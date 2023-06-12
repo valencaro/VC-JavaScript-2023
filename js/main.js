@@ -1,78 +1,121 @@
-let nombreUsuario;
-let contraseña;
-let dinero = 5000;
-let precioHamburguesa = 50;
-let energiaMascota = 0;
-let comidaMascota = 0;
 
+//INICIO DE SESION
 
-alert("Bienvenido/a a Mi Mascota Virtual."+ " "+ "Un juego en donde vas a poder cuidar y alimentar a tu mascota virtual como si fuera de verdad." + " " + "Esperamos que puedas pasar un buen rato divirtiéndote con nuestro juego.")
+const form = document.getElementById('form')
+const nombreUsuario = document.getElementById('username')
+const contraseña = document.getElementById('password')
+const contraseña2 = document.getElementById('password2');
 
-function registro() {
-  nombreUsuario = prompt("Para poder registrarte, deberás indicar un nombre de usuario que deberás recordar para ingresar cada vez que quieras jugar.");
-  contraseña = prompt("Ahora, deberás registrar una contraseña asociada al nombre de usurio seleccionado.");
+form.addEventListener("submit", e => {
+	e.preventDefault();
+	checkInputs();
+});
+
+function checkInputs(){
+    const usernameValue = username.value.trim();
+    const passwordValue = password.value.trim();
+    const password2Value = password2.value.trim();
+
+    if(usernameValue === '') {
+		setErrorFor(username, 'El nombre de usuario no puede quedar en blanco');
+	} else {
+		setSuccessFor(username);
+	}
+
+    if(passwordValue === '') {
+		setErrorFor(password, 'La contraseña no puede quedar en blanco');
+	} else {
+		setSuccessFor(password);
+	}
+
+    if(password2Value === '') {
+		setErrorFor(password2, 'La contraseña no puede quedar en blanco');
+	} else if(passwordValue !== password2Value) {
+		setErrorFor(password2, 'La contraseña no coincide');
+	} else{
+		setSuccessFor(password2);
+        guardarDatosUsuario();
+        window.location.href = "http://127.0.0.1:5500/pages/page1.html";
+	}
 }
 
-function ingresar() {
-  let ingresarUsuario = prompt("Ingresá tu nombre de usuario para poder ingresar.");
-  let ingresarContraseña = prompt("Ingresá la contraseña.");
-
- while (ingresarUsuario != nombreUsuario || ingresarContraseña != contraseña){
-    alert("Alguno de los datos ingresados no es correcto. Por favor vuelve a intentarlo.");
-    ingresarUsuario = prompt ("Indicá tu nombre de usuario para poder ingresar.");
-    ingresarContraseña = prompt ("Indicá la contraseña")
- }
-  if (ingresarUsuario === nombreUsuario && ingresarContraseña === contraseña) {
-    alert("Bienvenido " + nombreUsuario + "!." + " Ya podés jugar a Mi Mascota Virtual");
-  }
+function setErrorFor(input, message) {
+	const formControl = input.parentElement;
+	const small = formControl.querySelector('small');
+	formControl.className = 'form-control error';
+	small.innerText = message;
 }
 
-function seleccionarOperacion(){
-    alert ("Elegí la acción que quieras realizar \n 1: Consultar dinero \n 2: Comprar comida \n 3: Alimentar mascota \n 4: Consultar energia \n 5: Ver mascota \n 6: Salir");
+function setErrorFor(input, message) {
+	const formControl = input.parentElement;
+	const small = formControl.querySelector('small');
+	formControl.className = 'form-control error';
+	small.innerText = message;
+}
 
-    let operacion = prompt ("Ingresar el número de operación a realizar")
-    switch (operacion) {
-        case "1":
-            consultarDinero ()
-            break;
-        case "2":
-            comprarComida()
-            break;
-        case "3":
-            alimentarMascota()
-            break;
-        case "4":
-            consultarEnergia()
-            break;
-        case "5":
-            verMascota()
-            break;
-        case "6":
-            salir()
-            break;
-        default:
-            console.log ("Operación inválida")
-    }
+function setSuccessFor(input) {
+	const formControl = input.parentElement;
+	formControl.className = 'form-control success';
 }
 
 
-function consultarDinero(){
-    alert ("Su saldo es de " + dinero)
-    seleccionarOperacion()
+//GUARDAR DATOS
+
+function guardarDatosUsuario() {
+  const nombreUsuario = document.getElementById('username').value;
+  var contrasenaUsuario = document.getElementById('password').value;
+
+  localStorage.setItem('username', nombreUsuario);
+  localStorage.setItem('password', contrasenaUsuario);
 }
 
-function comprarComida (){
-    if (dinero >= 50){
-        alert ("Pudiste comprar una hamburguesa para tu mascota.")
-        dinero-=50;
-        energiaMascota += 1;
-    }
-    else{
-        alert("No tenés suficiente dinero para comprar comida.")
-    }
-    seleccionarOperacion()
+guardarDatosUsuario()
 
-}
+
+
+
+
+
+
+
+// const btnCrearMascota3 = document.getElementById(btnCrearMascota3);
+
+
+
+
+
+
+
+
+// function aumentarValor() {
+//   dinero += 50;
+// }
+// setInterval(aumentarValor, 3600000);
+
+// aumentarValor()
+
+
+// function consultarDinero() {
+//     const saldoContainer = document.getElementByI('saldo');
+//     saldoContainer.innerText = 'Saldo actual: $' + dinero;
+// }
+
+// consultarDinero()
+
+
+// function comprarComida (){
+//     if (dinero >= 50){
+//         alert ("Pudiste comprar una hamburguesa para tu mascota.")
+//         dinero-=50;
+//         energiaMascota += 1;
+//     }
+//     else{
+//         alert("No tenés suficiente dinero para comprar comida.")
+//     }
+
+// }
+
+// comprarComida()
 
 function alimentarMascota(){
     if (energiaMascota <= 5) {
@@ -82,24 +125,20 @@ function alimentarMascota(){
     } if (energiaMascota >7) {
         alert ("Tu mascota se encuentra con la energia super alta");
     }
-    seleccionarOperacion()
 }
 
-function consultarEnergia(){
-    alert ("La energía de tu mascota es " + energiaMascota)
-    seleccionarOperacion()
-}
+// function consultarEnergia(){
+//     alert ("La energía de tu mascota es " + energiaMascota)
+// }
 
-function verMascota(){
-    console.log (mascota1)
-    seleccionarOperacion()
-}
-
-function salir(){
-    alert ("Gracias por jugar a Mi Mascota Virtual. Que tengas buen día.")
-}
+// function verMascota(){
+//     // console.log (mascotas)
+//     seleccionarOperacion()
+// }
 
 
-registro();
-ingresar();
-seleccionarOperacion();
+// function salir(){
+//     alert ("Gracias por jugar a Mi Mascota Virtual. Que tengas buen día.")
+// }
+
+

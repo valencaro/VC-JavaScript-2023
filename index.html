@@ -3,12 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>Mi mascota virtual</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="shortcut icon" href="">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Almarai&family=Anton&display=swap" rel="stylesheet">
 </head>
 <body>
-    
-
-    <script src="js/main.js"></script>
+    <div class="container">
+        <div class="header">
+            <h2>BIENVENIDO A TU MASCOTA VIRTUAL</h2>
+            <p>Para comenzar a jugar deberás iniciar sesión</p>
+        </div>
+        <form id="form" class="form" type="submit">
+            <div class="form-control">
+                <label for="username">Nombre de usuario</label>
+                <input type="text" id="username" />
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Error message</small>
+            </div>
+            <div class="form-control">
+                <label for="username">Contraseña</label>
+                <input type="password" id="password"/>
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Error message</small>
+            </div>
+            <div class="form-control">
+                <label for="username">Chequeo de contraseña</label>
+                <input type="password" id="password2"/>
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Error message</small>
+            </div>
+            <button class="btnEmpecemos" onclick="guardarDatosUsuario();">Empecemos!</button>
+        </form>
+    </div>
+<script src="js/main.js"></script>
 </body>
 </html>
