@@ -20,6 +20,18 @@ function crearMascota() {
     document.getElementById("inputSexo").value = "";
     document.getElementById("inputComida").value = ""; 
     
-    window.location.href = "http://127.0.0.1:5500/pages/page4.html";
+    window.location.href = "../pages/page4.html";
 
 }
+
+//Metodo filtrado ---> corregir
+
+function buscarMascotasPorTipo(tipo) {
+    const mascotasFiltradas = mascotas.filter(function(mascota) {
+        return mascota.tipo === tipo;
+    });
+
+    return mascotasFiltradas;
+}
+
+buscarMascotasPorTipo("perro")

@@ -1,0 +1,18 @@
+[{
+        "tipo": "Perro",
+        "nombre": "Moro",
+        "comida": "fideos",
+        "sexo": "Macho"
+    },
+    {
+        "tipo": "Gato",
+        "nombre": "Felix",
+        "comida": "atun",
+        "sexo":"Hembra"
+    },
+    {
+        "tipo": "Pez",
+        "nombre": "Nemo",
+        "comida": "comida de pez",
+        "sexo":"Macho"
+    }]

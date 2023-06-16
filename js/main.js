@@ -35,7 +35,7 @@ function checkInputs(){
 	} else{
 		setSuccessFor(password2);
         guardarDatosUsuario();
-        window.location.href = "http://127.0.0.1:5500/pages/page1.html";
+        window.location.href = "../pages/page1.html";
 	}
 }
 
