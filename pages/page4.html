@@ -1,36 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <title>Mi mascota virtual</title>
-    <link rel="stylesheet" href="../css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Almarai&family=Anton&display=swap" rel="stylesheet">    
-</head>
-<body>
-    <div class="button-container-p4">
-        <div class="box">
-          <h2 id="saldo">SALDO DISPONIBLE: 800</h2>
-        </div>
-        <div class="box">
-          <h2 id="energia">ENERGIA ACTUAL: 0</h2>
-        </div>
-        <img class="image" src="" alt="Imagen">
-        <div id="mensajeCompra"></div>
-        <div id="mensajeAlimentar"></div>
-        <div class="button-container">
-            <button class="btnComprar" onclick="comprar()">COMPRAR</button>
-            <button class="btnAlimentar" onclick="alimentar()">ALIMENTAR</button>
-            <button class="btnEstado" onclick="consultar()">¿CÓMO SE SIENTE MI MASCOTA?</button>
-        </div>
-    <div>
-    <div id="mascotaContenedor"></div>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">    
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>Mi mascota virtual</title>
+  <link rel="stylesheet" href="../css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Almarai&family=Anton&family=Bebas+Neue&family=Mulish:wght@300;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <body>
+    <div id="divPadre">
+      <div id="divMascota">
+        <h2 id="tituloMascota"></h2>
+        <img class="imgMascota" src="../img/champu-para-mascotas.png" alt="">
+      </div>
+      <div id="divSaldo">
+        <h2 id="saldo">Saldo disponible: 800</h2>
+        <h2 id="energia">Energia actual: 0</h2>
+      </div>
+      <div id="divBtn">
+        <!-- <button class="btnDatos">CONSULTAR DATOS DE MI MASCOTA</button> -->
+        <button class="btnEstado" onclick="consultar()">¿CÓMO SE SIENTE MI MASCOTA?</button>
+      </div>
+      <div id="divAlmacen">
+        <h2 class="almacenTitulo">ALMACEN</h2>
+        <input id="buscador" type="text" placeholder="Buscar comida...">
+        <div id="comidaAlmacen"></div>
+      </div>
+    </div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="../js/page4.js"></script>
-</body>
+  </body>
 </html>

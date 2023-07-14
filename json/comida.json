@@ -1,0 +1,41 @@
+[{
+    "nombre": "Hamburguesa",
+    "imagen": "../img/hamburgo.png",
+    "precio": "200"
+},
+{
+    "nombre": "Hot Dog",
+    "imagen": "../img/pancho.png",
+    "precio": "150"
+},
+{
+    "nombre": "Panqueques",
+    "imagen": "../img/panqueques.png",
+    "precio": "100"
+},
+{
+    "nombre": "Manzana",
+    "imagen": "../img/manzana.png",
+    "precio": "50"
+},
+{
+    "nombre": "Banana",
+    "imagen": "../img/platano.png",
+    "precio": "40"
+},
+{
+    "nombre": "Frutilla",
+    "imagen": "../img/fresa.png",
+    "precio": "30"
+},
+{
+    "nombre": "Cookies",
+    "imagen": "../img/galletas.png",
+    "precio": "50"
+},
+{
+    "nombre": "Pizza",
+    "imagen": "../img/pizza.png",
+    "precio": "50" 
+}
+]

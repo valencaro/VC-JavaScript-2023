@@ -20,6 +20,8 @@ function crearMascota() {
     document.getElementById("inputSexo").value = "";
     document.getElementById("inputComida").value = ""; 
     
+    localStorage.setItem("nombreMascota", nombre);
+
     window.location.href = "../pages/page4.html";
 
 }

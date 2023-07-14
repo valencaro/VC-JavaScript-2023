@@ -1,99 +1,165 @@
 //PAGINA 4
 
+//MOSTRAR NOMBRE DE MASCOTA CAPTURADO DE LA PAG 3
+
+document.addEventListener("DOMContentLoaded", function() {
+    const nombreMascota = localStorage.getItem("nombreMascota");
+    const tituloMascota = document.getElementById("tituloMascota");
+    tituloMascota.textContent = `¡Tu mascota creada es ${nombreMascota}!`;
+});
+
+
+
 let saldoDisponible = 800;
-let precioHamburguesa = 50;
 let energiaMascota = 0;
 let compraRealizada = true;
-let vecesAlimentada = 0; 
 
 const saldo = document.getElementById('saldo');
 const energia = document.getElementById ('energia');
 
-//Me falta modificar el codigo para que con una compra, se pueda alimentar por ej 3 veces la mascota y no infinitamente.
+//CAPTURAR COMIDA DE JSON LOCAL
 
-function comprar() {
-    if (saldoDisponible >= 50) {
-        saldoDisponible -= 50;
-        compraRealizada = true;
-        actualizarSaldo();
-        mostrarMensaje('mensajeCompra', 'Compra realizada correctamente! Se restaron 50 del saldo.');
-    } else {
-        mostrarMensaje('mensajeCompra', 'No tienes saldo suficiente para realizar la compra.');
-  }
+async function obtenerComida () {
+
+    const respuesta = await fetch ("../json/comida.json")
+    const comidas = await respuesta.json()
+    
+    return comidas
 }
-  
-//La funcion alimentar tiene un condicional de que cuando la energia de la mascota llega a 10, ya no te deja seguir alimentandola.
 
-function alimentar() {
-    if (compraRealizada) {
-        if (energiaMascota < 10) {
-            energiaMascota += 1;
-            actualizarEnergia();
-            mostrarMensaje('mensajeAlimentar', '¡Muy bien! Alimentaste a tu mascota. Ahora su energía es de ' + energiaMascota + '.');
-        } else {
-            mostrarMensaje('mensajeAlimentar', 'Tu mascota ya está completamente alimentada.');
-        }
+async function mostrarComida(){
+
+        const comidas = await obtenerComida()
+        const contenedor = document.getElementById("comidaAlmacen")
+        const buscador = document.getElementById('buscador');
+
+        function mostrarComidasFiltradas(comidasFiltradas) {
+            contenedor.innerHTML = "";
+    
+            comidasFiltradas.forEach(comida => {
+            const cardComida = document.createElement("div")
+                cardComida.innerHTML=`
+                <div class="cardComidaContenedor">
+                    <div class="cardComida">
+                        <h5 class="cardTitulo">${comida.nombre}</h5>
+                        <img class="cardImg" src=${comida.imagen}></img>
+                        <h6 class="cardSubtitulo">$${comida.precio}</h6>
+                        <button class="cardBtnComprar">COMPRAR</button>
+                    </div>
+                </div>`
+    
+            contenedor.appendChild(cardComida)
+        });
+
+            const botonesComprar = document.getElementsByClassName("cardBtnComprar");
+                Array.from(botonesComprar).forEach((boton) => {
+                boton.addEventListener("click", cardBtnComprar);
+            });
+    }
+
+        function eventoBuscador() {
+            const filtro = buscador.value.toLowerCase();
+            const comidasFiltradas = filtrarComidas(comidas, filtro);
+            mostrarComidasFiltradas(comidasFiltradas);
+    }
+
+        buscador.addEventListener("input", eventoBuscador);
+
+        mostrarComidasFiltradas(comidas);
+}
+
+mostrarComida();
+
+function cardBtnComprar() {
+    const precioElement = this.parentElement.querySelector(".cardSubtitulo");
+    const precio = parseInt(precioElement.innerText.substring(1));
+    
+    if (saldoDisponible >= precio) {
+        saldoDisponible -= precio; 
+        actualizarSaldo();
+        console.log(`Se ha comprado la comida por $${precio}. Saldo restante: $${saldoDisponible}`);
+        alimentar();
     } else {
-        mostrarMensaje('mensajeAlimentar', 'Debes realizar una compra antes de poder alimentar a la mascota.');
+        console.log("No tienes suficiente saldo para comprar esta comida.");
     }
 }
-
 
 function actualizarSaldo() {
     document.getElementById('saldo').textContent = 'SALDO DISPONIBLE: ' + saldoDisponible;
 }
+
+
+function alimentar() {
+    energiaMascota += 1;
+    energia.textContent = `Energía actual: ${energiaMascota}`;
+}
+
   
 function actualizarEnergia() {
     document.getElementById('energia').textContent = 'ENERGÍA ACTUAL: ' + energiaMascota;
 }
 
-function consultar(){
+function consultar() {
     if (energiaMascota <= 3) {
-        alert ("Tu mascota se encuentra con la energia baja")
-    } else if(energiaMascota <= 7){
-        alert ("Tu mascota tiene la energia normal");
-    } if (energiaMascota >7) {
-        alert ("Tu mascota se encuentra con la energia super alta");
+        Toastify({
+            text: "Tu mascota se encuentra con la energía baja",
+            duration: 3000,
+            destination: "https://github.com/apvarun/toastify-js",
+            newWindow: true,
+            close: true,
+            gravity: "top",
+            position: "center",
+            stopOnFocus: true,
+            style: {
+                background: "#000",
+                color: "#fff",
+                fontFamily:"Almarai',sans-serif",
+                fontSize:"16px"
+            },
+            onClick: function() {}
+        }).showToast();
+    } else if (energiaMascota <= 7) {
+        Toastify({
+            text: "Tu mascota tiene la energía normal",
+            duration: 3000,
+            destination: "https://github.com/apvarun/toastify-js",
+            newWindow: true,
+            close: true,
+            gravity: "top",
+            position: "center",
+            stopOnFocus: true,
+            style: {
+                background: "#000",
+                color: "#fff",
+                fontFamily:"Almarai',sans-serif",
+                fontSize:"16px"
+            },
+            onClick: function() {}
+        }).showToast();
+    } else if (energiaMascota > 7) {
+        Toastify({
+            text: "Tu mascota se encuentra con la energía super alta",
+            duration: 3000,
+            destination: "https://github.com/apvarun/toastify-js",
+            newWindow: true,
+            close: true,
+            gravity: "top",
+            position: "center",
+            stopOnFocus: true,
+            style: {
+                background: "#000",
+                color: "#fff",
+                fontFamily:"Almarai',sans-serif",
+                fontSize:"16px"
+            },
+            onClick: function() {}
+        }).showToast();
     }
 }
 
-function mostrarMensaje(idDiv, mensaje) {
-    const divMensaje = document.getElementById(idDiv);
-    divMensaje.textContent = mensaje;
-    setTimeout(function() {
-      divMensaje.textContent = '';
-    }, 4000);
+//BUSCADOR
+
+function filtrarComidas(comidas, filtro) {
+    const comidasFiltradas = comidas.filter(comida => comida.nombre.toLowerCase().includes(filtro));
+    return comidasFiltradas;
 }
-
-async function pedirMascotas () {
-
-    const respuesta = await fetch ("../json/mascotas.json")
-    const mascotas = await respuesta.json()
-
-    return mascotas 
-}
-
-async function mostrarMascota(){
-
-    const mascotas = await pedirMascotas()
-    const contenedor = document.getElementById("mascotaContenedor")
-
-    mascotas.forEach(mascota => {
-        const cardMascota = document.createElement("div")
-
-        cardMascota.innerHTML=`
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">${mascota.nombre}</h5>
-                <h6 class="card-subtitle mb-2 text-body-secondary">Tipo de mascota: ${mascota.tipo}</h6>
-                <h6 class="card-subtitle mb-2 text-body-secondary">Comida favorita: ${mascota.comida}</h6>
-                <h6 class="card-subtitle mb-2 text-body-secondary">Sexo: ${mascota.sexo}</h6>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-            </div>
-        </div>`
-
-        contenedor.appendChild(cardMascota)
-    });
-}
-mostrarMascota()

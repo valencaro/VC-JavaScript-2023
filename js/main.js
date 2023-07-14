@@ -6,6 +6,8 @@ const nombreUsuario = document.getElementById('username')
 const contraseña = document.getElementById('password')
 const contraseña2 = document.getElementById('password2');
 
+const btnEmpecemos = document.getElementsByClassName('btnEmpecemos');
+
 form.addEventListener("submit", e => {
 	e.preventDefault();
 	checkInputs();
@@ -35,7 +37,18 @@ function checkInputs(){
 	} else{
 		setSuccessFor(password2);
         guardarDatosUsuario();
-        window.location.href = "../pages/page1.html";
+		Swal.fire({
+            icon: 'success',
+            title: '¡Inicio de sesión exitoso!',
+            text: 'Redirigiendo a la próxima página...',
+            timer: 3000,
+            showConfirmButton: false,
+			customClass:{
+				popup: 'swal-custom',
+			}
+		}).then(() => {
+            window.location.href = "../pages/page1.html";
+        });
 	}
 }
 
@@ -70,75 +83,3 @@ function guardarDatosUsuario() {
 }
 
 guardarDatosUsuario()
-
-
-
-
-
-
-
-
-// const btnCrearMascota3 = document.getElementById(btnCrearMascota3);
-
-
-
-
-
-
-
-
-// function aumentarValor() {
-//   dinero += 50;
-// }
-// setInterval(aumentarValor, 3600000);
-
-// aumentarValor()
-
-
-// function consultarDinero() {
-//     const saldoContainer = document.getElementByI('saldo');
-//     saldoContainer.innerText = 'Saldo actual: $' + dinero;
-// }
-
-// consultarDinero()
-
-
-// function comprarComida (){
-//     if (dinero >= 50){
-//         alert ("Pudiste comprar una hamburguesa para tu mascota.")
-//         dinero-=50;
-//         energiaMascota += 1;
-//     }
-//     else{
-//         alert("No tenés suficiente dinero para comprar comida.")
-//     }
-
-// }
-
-// comprarComida()
-
-function alimentarMascota(){
-    if (energiaMascota <= 5) {
-        alert ("Tu mascota se encuentra con la energia baja")
-    } else if(energiaMascota <= 7){
-        alert ("Tu mascota tiene la energia normal");
-    } if (energiaMascota >7) {
-        alert ("Tu mascota se encuentra con la energia super alta");
-    }
-}
-
-// function consultarEnergia(){
-//     alert ("La energía de tu mascota es " + energiaMascota)
-// }
-
-// function verMascota(){
-//     // console.log (mascotas)
-//     seleccionarOperacion()
-// }
-
-
-// function salir(){
-//     alert ("Gracias por jugar a Mi Mascota Virtual. Que tengas buen día.")
-// }
-
-
